@@ -1,0 +1,23 @@
+#components-layout-demo-side .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+}
+
+.user-avatar {
+    text-align: center;
+    height: 150px;
+    padding: 20px;
+}
+
+.infor {
+    display: flex; 
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
