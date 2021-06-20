@@ -1,0 +1,51 @@
+#components-layout-demo-side .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+}
+
+.user-avatar {
+    text-align: center;
+    height: 150px;
+    padding: 20px;
+}
+.col-dayoff{
+    text-align: start;
+    padding: 12px;
+}
+.col-icon{
+    text-align-last: end;
+    font-size: 30px;
+    padding-top: 20px;
+    padding-right: 40px;
+}
+.infor {
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.col-content{
+    border: solid 1px;
+    margin-right: 16px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 2px #aaa;
+}
+.row-in-dashboard-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+    margin: auto;
+}
+.dayoff {
+    text-align: left;
+    padding: 20px;
+}
+.table-task{
+    
+}
