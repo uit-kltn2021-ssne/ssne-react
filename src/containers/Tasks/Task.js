@@ -5,25 +5,29 @@ import '../Dayoff/Dayoff.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getToken } from '../../utils/AuthUtils';
-import { getCountDayOff, getDayOffs } from '../../reducer/Dayoff';
+import { getCountTasks, getTasks } from '../../reducer/Task';
 
 
 const columns = [
     {
-        title: 'Reason',
-        dataIndex: 'reason',
+        title: 'Title',
+        dataIndex: 'title',
     },
     {
-        title: 'Date',
-        dataIndex: 'date',
+        title: 'Date From',
+        dataIndex: 'from',
     },
     {
-        title: 'NumberOfHours',
-        dataIndex: 'numberOfHours',
+        title: 'Date To',
+        dataIndex: 'to',
+    },
+    {
+        title: 'Status',
+        dataIndex: 'status',
     },
 ];
 
-function DayOff() {
+function Task() {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loading1, setLoading1] = useState(false);
@@ -75,12 +79,12 @@ function DayOff() {
     const jwt = getToken();
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getDayOffs(jwt));
-        dispatch(getCountDayOff(jwt));
+        dispatch(getTasks(jwt));
+        dispatch(getCountTasks(jwt));
     }, [dispatch, jwt]);
-    const dayoffs = useSelector((store) => store.dayoffs.data);
-    const count_dayoff = useSelector((store) => store.dayoffs.count);
-    console.log(dayoffs);
+    const tasks = useSelector((store) => store.tasks.data);
+    const count_tasks = useSelector((store) => store.tasks.count);
+    console.log(tasks);
 
     const onSearch = value => console.log(value);
     return (
@@ -92,7 +96,7 @@ function DayOff() {
                         Search
                     </Button>
                     <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
-                    <Button type="primary" icon={<SearchOutlined />} onClick={showModal}>Add Day Off </Button>
+                    <Button type="primary" icon={<SearchOutlined />} onClick={showModal}>Add Task </Button>
                     <Modal
                         visible={visible}
                         title="Title"
@@ -107,18 +111,22 @@ function DayOff() {
                             </Button>
                         ]}
                     >
-
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
                     </Modal>
-                    <Button type="primary" icon={<SearchOutlined />}>Edit Day Off </Button>
-                    <Button type="primary" icon={<SearchOutlined />}>Delete Day Off </Button>
+                    <Button type="primary">Edit Task </Button>
+                    <Button type="primary">Delete Task </Button>
                 </Col>
             </Row>
             <Row className="colleague-row">
                 <Col span={20}>
-                    <Table rowSelection={rowSelection} columns={columns} dataSource={dayoffs} />
+                    <Table rowSelection={rowSelection} columns={columns} dataSource={tasks} />
                 </Col>
             </Row>
         </div>
     );
 }
-export default DayOff;
+export default Task;

@@ -1,79 +1,69 @@
 import { Table, Button, Row, Input, Col } from 'antd';
 import { SearchOutlined, AudioOutlined } from '@ant-design/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Colleague/ColleagueLayout.css'
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-  },
-  {
-    title: 'PhoneNumber',
-    dataIndex: 'phonenumber',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'Email',
-  },
-  {
-    title: 'SkypeId',
-    dataIndex: 'skypeid',
-  },
-  {
-    title: 'Facebook',
-    dataIndex: 'facebook',
-  },
-  {
-    title: 'Introduction',
-    dataIndex: 'introduction',
-  },
-  {
-    title: 'Avatar',
-    dataIndex: 'avatar',
-  },
-  {
-    title: 'Position',
-    dataIndex: 'Position',
-  },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { getCountEmployees, getEmployees } from '../../reducer/Employee';
+import { getToken } from '../../utils/AuthUtils';
 
-const data = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
+function TableColleague() {
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const jwt = getToken();
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+    },
+    {
+      title: 'PhoneNumber',
+      dataIndex: 'phoneNumber',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+    },
+    {
+      title: 'SkypeId',
+      dataIndex: 'skypeId',
+    },
+    {
+      title: 'Facebook',
+      dataIndex: 'facebook',
+    },
+    {
+      title: 'Introduction',
+      dataIndex: 'introduction',
+    },
+    {
+      title: 'Position',
+      dataIndex: 'position',
+    },
+  ];
 
-class TableColleague extends React.Component {
-  state = {
-    selectedRowKeys: [], // Check here to configure the default column
-    loading: false,
-  };
-
-  start = () => {
-    this.setState({ loading: true });
-    // ajax request after empty completing
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getEmployees(jwt));
+    dispatch(getCountEmployees(jwt));
+  },[dispatch, jwt]);
+  const employees = useSelector((store) => store.employees.data);
+  const count_employees = useSelector((store) => store.employees.count);
+  console.log(employees);
+  const start = () => {
+    setLoading(true);
     setTimeout(() => {
-      this.setState({
-        selectedRowKeys: [],
-        loading: false,
-      });
+      setSelectedRowKeys([]);
+      setLoading(false);
     }, 1000);
   };
 
-  onSelectChange = selectedRowKeys => {
+  const onSelectChange = selectedRowKeys => {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
-    this.setState({ selectedRowKeys });
+    setSelectedRowKeys(selectedRowKeys);
   };
-
-  render() {
-    const { loading, selectedRowKeys } = this.state;
-    const rowSelection = {
+    const rowSelection = { 
       selectedRowKeys,
-      onChange: this.onSelectChange,
+      onChange: onSelectChange,
     };
     const hasSelected = selectedRowKeys.length > 0;
     const { Search } = Input;
@@ -104,11 +94,11 @@ class TableColleague extends React.Component {
         </Row>
         <Row className="colleague-row">
           <Col span={20}>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+            <Table rowSelection={rowSelection} columns={columns} dataSource={employees} />
           </Col>
         </Row>
       </div>
     );
-  }
+  
 }
 export default TableColleague;
