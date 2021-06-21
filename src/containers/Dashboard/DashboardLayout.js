@@ -9,33 +9,19 @@ import {
   CalendarOutlined,
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getDayOff } from '../../reducer/Dayoff';
 
 const { Content, Footer, Sider } = Layout;
 const { Column } = Table;
+
 function LayoutWeb() {
   const [collapsed, setCollapsed] = useState(false);
   const onCollapsed = () => {
     console.log(collapsed);
     setCollapsed(collapsed);
   };
-  // getDayoff(jwt)
-  // {
-  //   const AuthStr = 'Bearer '.concat(jwt); 
-  //   axios.get('https://api.ssne.xyz/day-offs', {
-  //   headers: {
-  //     Authorization:AuthStr
-  //     },
-  //   })
-  //   .then(res => {
-  //       console.log(res.data);
-  //       localStorage.setItem('Day')
-  //   })
-  //   .catch(error => console.log(error));
-  // }
   const dataUser = JSON.parse(sessionStorage.getItem("resData"));
   console.log(dataUser);
   var employeeInfo = dataUser.user.employeeInfo;
@@ -43,12 +29,11 @@ function LayoutWeb() {
   function onPanelChange(value, mode) {
     console.log(value.format('YYYY-MM-DD'), mode);
   }
-  // this.getDayoff(jwt);
   const dispatch = useDispatch();
   useEffect(() => {
     // Cập nhật tiêu đề trang web sử dụng API trình duyệt
     dispatch(getDayOff(jwt));
-  },[]);
+  },[dispatch, jwt]);
   const dayoff = useSelector(( store) => store.dayoff.data);
   console.log(dayoff);
   const data = [

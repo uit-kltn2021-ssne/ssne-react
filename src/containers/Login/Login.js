@@ -3,7 +3,6 @@ import axios from 'axios';
 import '../Login/Login.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { Layout, Menu } from 'antd';
-import { Redirect,Route } from 'react-router-dom';
 const { Header, Content } = Layout;
 export default class Login extends React.Component {
     constructor(pros) {

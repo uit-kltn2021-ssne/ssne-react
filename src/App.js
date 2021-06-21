@@ -12,16 +12,16 @@ import Profile from './containers/ProfileLayout/Profile.js';
 import TableColleague from './containers/Colleague/ColleagueLayout.js'
 import DayOff from './containers/Dayoff/Dayoff';
 import { Provider } from 'react-redux';
+import { store } from './reducer/store';
+
 function App() {
   return (
-      <Router>
-       <Provider store={store}> // Set context
-      <App /> // Now App has access to context
-    </Provider>
+    <Router>
+      <Provider store={store}>
         <Switch>
           <div className="App">
             <Route exact path="/" component={Login} />
-            <Route exact path="/dashboard" component={LayoutWeb} />
+            <Route exact path="/dashboard"><LayoutWeb /></Route>
             <Route exact path="/calendar" component={CalendarWeb} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
@@ -29,7 +29,8 @@ function App() {
             <Route exact path="/dayoff" component={DayOff} />
           </div>
         </Switch>
-      </Router>
+      </Provider>
+    </Router>
   );
 }
 export default App;
