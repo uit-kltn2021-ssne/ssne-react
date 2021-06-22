@@ -31,13 +31,14 @@ export const getDayOffs = (jwt) => (dispatch) => {
  const ADD_DAYOFF  = "ADD_DAYOFF";
  export const addDayOff = (jwt,data) => (dispatch) => {
     const AuthStr = 'Bearer '.concat(jwt); 
-    axios.post('https://api.ssne.xyz//day-offs', data,
+    axios.post('https://api.ssne.xyz/day-offs', data,
     {
     headers: {
       Authorization:AuthStr
       },
     })
     .then(res => {
+        console.log(1111222);
         dispatch({ type: ADD_DAYOFF, data: res.data });
     })
     .catch(error => console.log(error));

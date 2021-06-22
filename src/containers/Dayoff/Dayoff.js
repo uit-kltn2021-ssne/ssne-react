@@ -1,14 +1,19 @@
-import { Table, Button, Row, Input, Col, Modal } from 'antd';
-import { SearchOutlined, AudioOutlined } from '@ant-design/icons';
+import { Table, Button, Row, Input, Col, Modal, DatePicker, Space,InputNumber } from 'antd';
+import { SearchOutlined, AudioOutlined, UserOutlined } from '@ant-design/icons';
 import React from 'react';
 import '../Dayoff/Dayoff.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getToken } from '../../utils/AuthUtils';
-import { getCountDayOff, getDayOffs } from '../../reducer/Dayoff';
+import { addDayOff, getCountDayOff, getDayOffs } from '../../reducer/Dayoff';
 
 
 const columns = [
+
+    {
+        title: 'Name',
+        dataIndex: 'name',
+    },
     {
         title: 'Reason',
         dataIndex: 'reason',
@@ -21,6 +26,11 @@ const columns = [
         title: 'NumberOfHours',
         dataIndex: 'numberOfHours',
     },
+   
+    {
+        title: 'Phone Number',
+        dataIndex: 'phoneNumber',
+    },
 ];
 
 function DayOff() {
@@ -28,6 +38,21 @@ function DayOff() {
     const [loading, setLoading] = useState(false);
     const [loading1, setLoading1] = useState(false);
     const [visible, setVisible] = useState(false);
+    const { TextArea } = Input;
+    const [value, setValue] = useState('');
+    const [reason, setReason] = useState('');
+    const [date, setDate] = useState('');
+    const [name, setName] = useState('');
+    const [phonenumber, setPhoneNumber] = useState('');
+    const [numberOfHours, setNumberOfHours] = useState(0);
+    const jwt = getToken();
+    var dataDayOff ={
+        "reason": reason,
+        "date": date,
+        "numberOfHours": numberOfHours,
+        "name": setName,
+        "phoneNumber": "03981879",
+      };
     const start = () => {
         setLoading({ loading: true });
         // ajax request after empty completing
@@ -41,6 +66,7 @@ function DayOff() {
     };
     const handleOk = () => {
         setLoading1(true);
+        dispatch(addDayOff(jwt,dataDayOff));
         setTimeout(() => {
             setLoading1(false);
             setVisible(false);
@@ -49,6 +75,9 @@ function DayOff() {
 
     const handleCancel = () => {
         setVisible(false);
+    };
+    const onChange = ({ target: { value } }) => {
+        setValue(value);
     };
 
     const onSelectChange = selectedRowKeys => {
@@ -61,6 +90,14 @@ function DayOff() {
         selectedRowKeys,
         onChange: onSelectChange,
     };
+    const getDate = (date, dateString) =>{
+        setDate(dateString);
+        console.log(date, dateString);
+    }
+    const getNumberOfHour = (value) =>{
+        setNumberOfHours(value);
+        console.log('changed', value);
+    }
     const hasSelected = selectedRowKeys.length > 0;
     const { Search } = Input;
 
@@ -72,7 +109,7 @@ function DayOff() {
             }}
         />
     );
-    const jwt = getToken();
+    
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getDayOffs(jwt));
@@ -95,7 +132,7 @@ function DayOff() {
                     <Button type="primary" icon={<SearchOutlined />} onClick={showModal}>Add Day Off </Button>
                     <Modal
                         visible={visible}
-                        title="Title"
+                        title="Day Off "
                         onOk={handleOk}
                         onCancel={handleCancel}
                         footer={[
@@ -107,8 +144,27 @@ function DayOff() {
                             </Button>
                         ]}
                     >
-
+                        <Input
+                            placeholder="Reason"
+                            onChange= {(event) => setReason(event.target.value)}
+                        />
+                        <Input
+                            placeholder="Name Employee"
+                            onChange= {(event) => setName(event.target.value)}
+                        />
+                        <Input
+                            placeholder="Phone Number"
+                            onChange= {(event) => setPhoneNumber(event.target.value)}
+                        />
+                        <Space direction="vertical">
+                            <DatePicker onChange={getDate} />
+                        </Space>,
+                        <InputNumber min={1} max={8}
+                            placeholder="Number Of Hours"
+                            onChange= {getNumberOfHour}
+                        />
                     </Modal>
+
                     <Button type="primary" icon={<SearchOutlined />}>Edit Day Off </Button>
                     <Button type="primary" icon={<SearchOutlined />}>Delete Day Off </Button>
                 </Col>
