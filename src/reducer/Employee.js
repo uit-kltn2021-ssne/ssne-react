@@ -44,7 +44,7 @@ export const addEmployees = (jwt) => (dispatch) => {
 
 
  const initialState = { data: [] ,count:''};
- export default function dayOffReducer(state=initialState,action) {
+ export default function employeeReducer(state=initialState,action) {
     switch (action.type) {
         case GET_EMPLOYEES:
             return {

@@ -31,7 +31,7 @@ export const getFaqs = (jwt) => (dispatch) => {
  }; 
 
  const initialState = { data:[] ,question:[]};
- export default function dayOffReducer(state=initialState,action) {
+ export default function faqReducer(state=initialState,action) {
     switch (action.type) {
         case ADD_FAQS:
             return {

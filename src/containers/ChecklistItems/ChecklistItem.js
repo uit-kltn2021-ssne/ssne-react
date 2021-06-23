@@ -10,12 +10,14 @@ import { useEffect, useState } from 'react';
 import { getCountDayOff, getDayOffs } from '../../reducer/Dayoff';
 import { getCountEmployees, getEmployees } from '../../reducer/Employee';
 import { getCountTasks, getTasks } from '../../reducer/Task';
-import { getToken } from '../../utils/AuthUtils';
+import { getToken, removeToken, removeUser } from '../../utils/AuthUtils';
+import { useHistory } from 'react-router-dom';
 
 const { Column } = Table;
 
 function LayoutWeb(props) {
   const [collapsed, setCollapsed] = useState(false);
+  let history = useHistory();
   const onCollapsed = () => {
     console.log(collapsed);
     setCollapsed(collapsed);
@@ -45,7 +47,11 @@ function LayoutWeb(props) {
   const listDayOff = dayoffs.map((dayoffs) => 
         <li> {dayoffs.reason}</li>
   );
-  
+  const Logout =() => {
+      removeToken();
+      removeUser();
+      history.push('/login');
+  }
   const onSelectDateHandler=(value)=>{
     console.log(value)
   }
@@ -54,8 +60,8 @@ function LayoutWeb(props) {
     <>
       {console.log("render dashboard")}
           <div>
-            <Row className="row-in-dashboard-1" style={{ justifyContent: "center" }}>
-              <Col span={8} className="col-content">
+            <Row className="row-in-dashboard-1">
+              <Col span={7} className="col-content">
                 <Row>
                   <Col span={12} className="col-dayoff">
                     <p>Day Off</p>
@@ -66,7 +72,7 @@ function LayoutWeb(props) {
                   </Col>
                 </Row>
               </Col>
-              <Col span={8} className="col-content">
+              <Col span={7} className="col-content">
                 <Row>
                   <Col span={12} className="col-dayoff">
                     <p>Colleague</p>
@@ -87,6 +93,9 @@ function LayoutWeb(props) {
                     <CalendarOutlined />
                   </Col>
                 </Row>
+              </Col>
+              <Col span={1} >
+                <Button type="primary" onClick={Logout}>Log out</Button>
               </Col>
             </Row>
           </div>

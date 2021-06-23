@@ -4,13 +4,16 @@ import '../Login/Login.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { Layout, Menu } from 'antd';
 import { storeToken, getToken, storeUser } from '../../utils/AuthUtils';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 const { Header, Content } = Layout;
 export default function Login(props) {
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
+    
+    let history = useHistory();
+    
     useEffect(() => {
     }, []);
     const setUsername = event => {
@@ -31,7 +34,7 @@ export default function Login(props) {
                 const data = res.data;
                 storeToken(data.jwt);
                 storeUser(JSON.stringify(data.user));
-                props.history.push('/dashboard');
+                history.push('/dashboard');
 
             })
             .catch(error => console.log(error));
@@ -76,12 +79,12 @@ export default function Login(props) {
                         onFinishFailed={onFinishFailed}
                     >
                         <Form.Item
-                            label="Username"
-                            name="username"
+                            label="Email"
+                            name="Email"
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input your username!',
+                                    message: 'Please input your email!',
                                 },
                             ]}
                         >

@@ -29,7 +29,7 @@ export const getTasks = (jwt) => (dispatch) => {
  }; 
 
  const initialState = { data: [] ,count:''};
- export default function dayOffReducer(state=initialState,action) {
+ export default function taskReducer(state=initialState,action) {
     switch (action.type) {
         case GET_TASKS:
             return {
