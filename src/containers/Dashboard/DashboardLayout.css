@@ -25,10 +25,10 @@
     margin-bottom: 10px;
 }
 .col-content{
-    border: solid 1px;
+    border: solid 2px #aaa;
     margin-right: 16px;
-    border-radius: 8px;
-    box-shadow: 3px 3px 2px #aaa;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px #aaa;
 }
 .row-in-dashboard-1{
     display: flex;

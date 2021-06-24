@@ -17,6 +17,7 @@ import { getToken } from './utils/AuthUtils';
 import Task from './containers/Tasks/Task';
 import FAQ from './containers/FAQ/FAQ';
 import { createBrowserHistory } from "history";
+import Article from './containers/Articles/Article';
 
 function App() {
   const token = getToken();
@@ -43,6 +44,10 @@ function App() {
                 <Route exact path="/dayoffs" component={DayOff} />
                 <Route exact path="/tasks" component={Task} />
                 <Route exact path="/faqs" component={FAQ} />
+                <Route exact path="/article" component={Article} />
+                {/* <Route exact path="/checklist" component={Checklist} />
+                <Route exact path="/support" component={Support} />
+                <Route exact path="/support-reply" component={SupportReply} /> */} 
               </DefaultLayout>}
           </div>
         </Switch>

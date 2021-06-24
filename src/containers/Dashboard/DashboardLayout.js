@@ -4,6 +4,8 @@ import { Layout } from 'antd';
 import { Calendar,  Row, Col, Button, Table } from 'antd';
 import {
   CalendarOutlined,
+  UserOutlined,
+  AlignLeftOutlined,
 } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -49,10 +51,8 @@ function LayoutWeb(props) {
   const onSelectDateHandler=(value)=>{
     console.log(value)
   }
-  console.log("render dashboard");
   return (
     <>
-      {console.log("render dashboard")}
           <div>
             <Row className="row-in-dashboard-1" style={{ justifyContent: "center" }}>
               <Col span={8} className="col-content">
@@ -61,8 +61,8 @@ function LayoutWeb(props) {
                     <p>Day Off</p>
                     <p>{count_dayoff}</p>
                   </Col>
-                  <Col span={12} className="col-icon" style={{ color: "#EC4C47" }}>
-                    <CalendarOutlined className='icon-cal' />
+                  <Col span={12} className="col-icon">
+                    <CalendarOutlined style={{border: "1px solid #EC4C47",borderRadius: "100%" ,justifyContent: "center", padding: "10px" , background: "#EC4C47",color: "white"}} />
                   </Col>
                 </Row>
               </Col>
@@ -72,8 +72,8 @@ function LayoutWeb(props) {
                     <p>Colleague</p>
                     <p>{count_employees}</p>
                   </Col>
-                  <Col span={12} className="col-icon" style={{ color: "#EC4C47" }}>
-                    <CalendarOutlined />
+                  <Col span={12} className="col-icon">
+                    <UserOutlined style={{border: "1px solid #47B881",borderRadius: "100%" ,justifyContent: "center", padding: "10px" , background: "#47B881",color: "white"}}/>
                   </Col>
                 </Row>
               </Col>
@@ -83,8 +83,8 @@ function LayoutWeb(props) {
                     <p>Task</p>
                     <p>{count_tasks}</p>
                   </Col>
-                  <Col span={12} className="col-icon" style={{ color: "#EC4C47" }}>
-                    <CalendarOutlined />
+                  <Col span={12} className="col-icon">
+                    <AlignLeftOutlined style={{border: "1px solid #1070CA",borderRadius: "100%" ,justifyContent: "center", padding: "10px" , background: "#1070CA",color: "white"}}/>
                   </Col>
                 </Row>
               </Col>

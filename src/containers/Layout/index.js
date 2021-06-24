@@ -2,7 +2,6 @@ import React from 'react';
 import { Layout, Menu, Avatar, Button } from 'antd';
 import {
     DashboardOutlined,
-    DesktopOutlined,
     CalendarOutlined,
     AlignLeftOutlined,
     QuestionOutlined,
@@ -38,42 +37,54 @@ function DefaultLayout(props) {
                     </Menu>
             </Header>
             <Layout>
-                <Sider style={{ background: "#FFFFFF" }}>
+                <Sider style={{ background: "#FFFFFF"}}>
                     <div className="logo" />
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{ background: "#FFFFFF" }}>
+                    <Menu theme="dark"  mode="inline" style={{ background: "#FFFFFF" }}>
                         <div className='user-avatar'>
-                            <Avatar size={64} icon={<UserOutlined />} src={"https://api.ssne.xyz" + employeeInfo.avatar.url}
+                            <Avatar size={90} icon={<UserOutlined />} src={"https://api.ssne.xyz" + employeeInfo.avatar.url}
                                 style={{
                                     cursor: 'pointer',
-                                    width: 64,
-                                    height: 64,
+                                    width: 90,
+                                    height: 90,
                                 }} />
                             <div className='infor'>
-                                <p style={{ padding: '10px', color: "#66788A" }}> {employeeInfo.name}</p>
-                                <p style={{ color: "#66788A" }}>  {employeeInfo.position}</p>
+                                <p style={{ paddingTop: '20px', color: "#66788A",fontSize:"17px" }}> {employeeInfo.name}</p>
+                                <p style={{ paddingTop: '10px',color: "#66788A",fontSize:"17px"  }}>  {employeeInfo.position}</p>
                             </div>
                         </div>
 
-                        <Menu.Item icon={<DashboardOutlined />} style={{ color: "0000FF" }}>
-                            <Link to="/dashboard" style={{ color: "#66788A" }}> Dashboard</Link>
+                        <Menu.Item key="1" icon={<DashboardOutlined />} style={{ color: "#0000FF",fontSize: "18px" }}>
+                            <Link to="/dashboard" style={{ color: "#66788A" }}> Bảng Điều Khiển </Link>
                         </Menu.Item>
-                        <Menu.Item icon={<UserOutlined />} style={{ color: "#0000FF" }}>
-                            <Link to="/colleague" style={{ color: "#66788A" }}> Colleague</Link>
+                        <Menu.Item key="2" icon={<UserOutlined />} style={{ color: "#0000FF",fontSize: "18px" }}>
+                            <Link to="/colleague" style={{ color: "#66788A" }}> Nhân Viên </Link>
                         </Menu.Item>
-                        <Menu.Item icon={<CalendarOutlined />} style={{ color: "#0000FF" }}>
-                            <Link to="/calendar" style={{ color: "#66788A" }}> Calendar</Link>
+                        <Menu.Item key="3" icon={<CalendarOutlined />} style={{ color: "#0000FF" ,fontSize: "18px" }}>
+                            <Link to="/calendar" style={{ color: "#66788A" }}> Lịch trình </Link>
                         </Menu.Item>
-                        <Menu.Item icon={<AlignLeftOutlined />} style={{ color: "#0000FF" }}>
-                            <Link to="/tasks" style={{ color: "#66788A" }}>Tasks</Link>
+                        <Menu.Item key="4" icon={<AlignLeftOutlined />} style={{ color: "#0000FF" ,fontSize: "18px" }}>
+                            <Link to="/tasks" style={{ color: "#66788A" }}> Công Việc </Link>
                         </Menu.Item>
-                        <Menu.Item icon={<CalendarOutlined />} style={{ color: "#0000FF" }}>
-                            <Link to="/dayoffs" style={{ color: "#66788A" }}>Day Off</Link>
+                        <Menu.Item key="5" icon={<CalendarOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
+                            <Link to="/dayoffs" style={{ color: "#66788A" }}>Ngày nghỉ </Link>
                         </Menu.Item>
-                        <Menu.Item icon={<QuestionOutlined />} style={{ color: "#0000FF" }}>
+                        <Menu.Item key="6" icon={<QuestionOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
                             <Link to="/faqs" style={{ color: "#66788A" }}>FAQS</Link>
                         </Menu.Item>
-                        <Menu.Item icon={<RobotOutlined />} style={{ color: "#0000FF" }}>
+                        <Menu.Item key="7" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
                             <Link to="/chatbot" style={{ color: "#66788A" }}>Chat Bot</Link>
+                        </Menu.Item>
+                        <Menu.Item key="8" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
+                            <Link to="/checklist" style={{ color: "#66788A" }}>Danh mục công việc</Link>
+                        </Menu.Item>
+                        <Menu.Item key="9" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
+                            <Link to="/article" style={{ color: "#66788A" }}>Bài viết</Link>
+                        </Menu.Item>
+                        <Menu.Item key="10" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
+                            <Link to="/support" style={{ color: "#66788A" }}>Hỗ Trợ</Link>
+                        </Menu.Item>
+                        <Menu.Item key="11" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
+                            <Link to="/support-reply" style={{ color: "#66788A" }}>Câu trả lời hỗ trợ</Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>

@@ -50,8 +50,8 @@ function DayOff() {
         "reason": reason,
         "date": date,
         "numberOfHours": numberOfHours,
-        "name": setName,
-        "phoneNumber": "03981879",
+        "name": name,
+        "phoneNumber": phonenumber,
       };
     const start = () => {
         setLoading({ loading: true });
