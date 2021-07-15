@@ -1,5 +1,5 @@
 import { Table, Button, Row, Input, Col, Modal, DatePicker, Space,InputNumber } from 'antd';
-import { SearchOutlined, AudioOutlined, UserOutlined } from '@ant-design/icons';
+import { SearchOutlined, AudioOutlined,EditOutlined,RollbackOutlined,FolderAddOutlined,DeleteOutlined } from '@ant-design/icons';
 import React from 'react';
 import '../Dayoff/Dayoff.css'
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,24 +11,24 @@ import { addDayOff, getCountDayOff, getDayOffs } from '../../reducer/Dayoff';
 const columns = [
 
     {
-        title: 'Name',
+        title: 'Họ Tên',
         dataIndex: 'name',
     },
     {
-        title: 'Reason',
+        title: 'Lí do Nghỉ',
         dataIndex: 'reason',
     },
     {
-        title: 'Date',
+        title: 'Ngày',
         dataIndex: 'date',
     },
     {
-        title: 'NumberOfHours',
+        title: 'Số tiếng nghỉ trong ngày',
         dataIndex: 'numberOfHours',
     },
    
     {
-        title: 'Phone Number',
+        title: 'Số điện thoại liên lạc ',
         dataIndex: 'phoneNumber',
     },
 ];
@@ -124,12 +124,12 @@ function DayOff() {
         <div>
             <Row className="colleague-row-1" >
                 <Col span={24}>
-                    <Button type="primary" icon={<SearchOutlined />}>Back</Button>
+                    <Button type="primary" icon={<RollbackOutlined />}>Quay lại</Button>
                     <Button type="primary" icon={<SearchOutlined />}>
-                        Search
+                        Tìm Kiếm
                     </Button>
                     <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
-                    <Button type="primary" icon={<SearchOutlined />} onClick={showModal}>Add Day Off </Button>
+                    <Button type="primary" icon={ <FolderAddOutlined />} onClick={showModal}>Thêm Ngày Nghỉ </Button>
                     <Modal
                         visible={visible}
                         title="Day Off "
@@ -165,8 +165,8 @@ function DayOff() {
                         />
                     </Modal>
 
-                    <Button type="primary" icon={<SearchOutlined />}>Edit Day Off </Button>
-                    <Button type="primary" icon={<SearchOutlined />}>Delete Day Off </Button>
+                    <Button type="primary" icon={<EditOutlined />}> Chỉnh Sửa Thông Tin Ngày Nghỉ </Button>
+                    <Button type="primary" icon={<DeleteOutlined />}>Delete Day Off </Button>
                 </Col>
             </Row>
             <Row className="colleague-row">

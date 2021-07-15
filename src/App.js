@@ -18,6 +18,10 @@ import Task from './containers/Tasks/Task';
 import FAQ from './containers/FAQ/FAQ';
 import { createBrowserHistory } from "history";
 import Article from './containers/Articles/Article';
+import Support from './containers/Supports/Support';
+import SupportReply from './containers/SupportReplies/SupportReply';
+import CheckList from './containers/ChecklistItems/ChecklistItem';
+import BlogDetail from './containers/Articles/BlogDetail';
 
 function App() {
   const token = getToken();
@@ -45,9 +49,14 @@ function App() {
                 <Route exact path="/tasks" component={Task} />
                 <Route exact path="/faqs" component={FAQ} />
                 <Route exact path="/article" component={Article} />
-                {/* <Route exact path="/checklist" component={Checklist} />
+                <Route
+                  exact
+                  path="/article/:id"
+                  component={BlogDetail}
+                />
                 <Route exact path="/support" component={Support} />
-                <Route exact path="/support-reply" component={SupportReply} /> */} 
+                <Route exact path="/checklist" component={CheckList} />
+                <Route exact path="/support-reply" component={SupportReply} />
               </DefaultLayout>}
           </div>
         </Switch>

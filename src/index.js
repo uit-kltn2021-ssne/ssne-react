@@ -7,7 +7,6 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from './reducer/store';
 import { Provider } from 'react-redux';
-// import TableColleague from './containers/Colleague/ColleagueLayout.js';
 ReactDOM.render(
   <BrowserRouter>
    <Provider store={store}> 

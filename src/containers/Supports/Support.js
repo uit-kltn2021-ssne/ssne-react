@@ -10,24 +10,24 @@ import { addFaqs, getFaqs } from '../../reducer/Faq';
 const { Option } = Select;
 const columns = [
     {
-        title: 'Tiêu đề ',
-        dataIndex: 'title',
+        title: 'Chủ đề ',
+        dataIndex: 'subject',
     },
     {
-        title: 'Mô tả',
-        dataIndex: 'description',
+        title: 'Nội Dung',
+        dataIndex: 'content',
     },
     {
-        title: 'Tag',
-        dataIndex: 'tag',
+        title: 'Loại hỗ trợ',
+        dataIndex: 'type',
     },
     {
-        title: ' Employee',
-        dataIndex: 'employee',
+        title: ' Trạng thái',
+        dataIndex: 'status',
     },
 ];
 
-function CheckList() {
+function Support() {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loading1, setLoading1] = useState(false);
@@ -119,7 +119,50 @@ function CheckList() {
                     <Button type="primary" icon={<SearchOutlined />}>
                         Tìm Kiếm
                     </Button>
-                    <Search placeholder="Nhập checklist muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} />
+                    <Search placeholder="Nhập FAQ muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} />
+                    <Button type="primary" icon={<FolderAddOutlined />} onClick={showModal}>Thêm Hỗ Trợ </Button>
+                    <Modal
+                        visible={visible}
+                        title="Thêm Hỗ Trợ"
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                        footer={[
+                            <Button key="back" onClick={handleCancel}>
+                                Quay lại
+                            </Button>,
+                            <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
+                                OK
+                            </Button>
+                        ]}
+                    >
+                        <Input
+                            placeholder="Chủ Đề"
+                            onChange={(event) => setSubject(event.target.value)}
+                        />
+                        <Input
+                            placeholder="Nội Dung"
+                            onChange={(event) => setContent(event.target.value)}
+                        />
+
+                        <Select
+                            onChange={(event) =>{setType(event.target.value)}}
+                            placeholder="Loại hỗ trợ"
+                            
+                        >
+                            <Option value="it_support">Hỗ trợ IT</Option>
+                            <Option value="hr_support"> Hỗ trợ HR</Option>
+                            <Option value="other">Khác </Option>
+                        </Select>
+                        {/* <Select
+                            onChange={(event) =>{setStatus(event.target.value)}}
+                            style={{ width: 200 }}
+                            placeholder="Trạng thái"
+                        >
+                            <Option value="pending"> Đang chờ xử lý </Option>
+                            <Option value="approved">Đã Duyệt</Option>
+                            <Option value="rejected">Từ Chối</Option>
+                        </Select> */}
+                    </Modal>
                 </Col>
             </Row>
             <Row className="colleague-row">
@@ -130,4 +173,4 @@ function CheckList() {
         </div>
     );
 }
-export default CheckList;
+export default Support;

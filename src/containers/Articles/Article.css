@@ -1,0 +1,15 @@
+.col-article{
+    border: solid 2px #aaa;
+    height: 150px;
+    border-radius: 60px;
+    margin: 10px;
+    padding-top: 4%;
+}
+.icon-article{
+    margin-left: auto;
+    padding-top: 8px;
+    padding-right: 27px;
+}
+.col-article:hover {
+    color: #0000FF;
+}

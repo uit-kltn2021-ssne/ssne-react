@@ -1,5 +1,5 @@
 import { Table, Button, Row, Input, Col, Modal,Form } from 'antd';
-import { SearchOutlined, AudioOutlined } from '@ant-design/icons';
+import { SearchOutlined, AudioOutlined ,RollbackOutlined ,FolderAddOutlined } from '@ant-design/icons';
 import React from 'react';
 import '../Dayoff/Dayoff.css'
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,11 +10,11 @@ import { addFaqs, getFaqs } from '../../reducer/Faq';
 
 const columns = [
     {
-        title: 'Question',
+        title: 'Câu Hỏi ',
         dataIndex: 'question',
     },
     {
-        title: 'Answer',
+        title: 'Câu Trả Lời',
         dataIndex: 'answer',
     },
 ];
@@ -94,12 +94,12 @@ function FAQ() {
         <div>
             <Row className="colleague-row-1" >
                 <Col span={24}>
-                    <Button type="primary">Back</Button>
+                    <Button type="primary" icon={ <RollbackOutlined />}>Quay lại</Button>
                     <Button type="primary" icon={<SearchOutlined />}>
-                        Search
+                        Tìm Kiếm
                     </Button>
-                    <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
-                    <Button type="primary" onClick={showModal}>Add FAQS </Button>
+                    <Search placeholder="Nhập FAQ muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} />
+                    <Button type="primary"  icon={ <FolderAddOutlined />} onClick={showModal}>Thêm FAQS </Button>
                     <Modal
                         visible={visible}
                         title="FAQ"
@@ -107,20 +107,20 @@ function FAQ() {
                         onCancel={handleCancel}
                         footer={[
                             <Button key="back" onClick={handleCancel}>
-                                Return
+                                Quay lại
                             </Button>,
                             <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
-                                Submit
+                                OK
                             </Button>
                         ]}
                     >
                         <Form.Item
-                            label="Question"
+                            label="Câu Hỏi"
                             name="Question"
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input your question!',
+                                    message: 'Hãy nhập câu hỏi !',
                                 },
                             ]}
                         >
@@ -133,7 +133,7 @@ function FAQ() {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input your answer!',
+                                    message: 'Hãy nhập câu trả lời',
                                 },
                             ]}
                         >

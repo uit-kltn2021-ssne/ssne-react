@@ -4,19 +4,12 @@ import { Button, Layout, Menu, Input } from 'antd';
 import { Avatar } from 'antd';
 import { Row, Col } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-const { Header, Content, Footer } = Layout;
+const {  Content, Footer } = Layout;
 
 class Profile extends React.Component {
     render() {
         return (
             <Layout className="layout">
-                <Header>
-                    <div className="logo" />
-                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                        <Menu.Item key="1">Profile</Menu.Item>
-                        <Menu.Item key="2">Account</Menu.Item>
-                    </Menu>
-                </Header>
                 <Content style={{ padding: '0 50px' }}>
                     <Row>
                         <div id='data-user'>

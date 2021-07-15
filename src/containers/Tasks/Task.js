@@ -1,5 +1,5 @@
-import { Table, Button, Row, Input, Col, Modal } from 'antd';
-import { SearchOutlined, AudioOutlined } from '@ant-design/icons';
+import { Table, Button, Row, Input, Col, Modal ,Switch,DatePicker,Space} from 'antd';
+import { SearchOutlined, AudioOutlined,EditOutlined,RollbackOutlined,FolderAddOutlined,DeleteOutlined } from '@ant-design/icons';
 import React from 'react';
 import '../Dayoff/Dayoff.css'
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,6 +32,12 @@ function Task() {
     const [loading, setLoading] = useState(false);
     const [loading1, setLoading1] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [title, setTitle] = useState('');
+    const [description,setDescription] = useState('');
+    const [status,setStatus] = useState(true);
+    const [employee,setEmployee] = useState('');
+    const [dateFrom,setDateFrom] = useState("");
+    const [dateTo,setDateTo] = useState("");
     const start = () => {
         setLoading({ loading: true });
         // ajax request after empty completing
@@ -85,21 +91,28 @@ function Task() {
     const tasks = useSelector((store) => store.tasks.data);
     const count_tasks = useSelector((store) => store.tasks.count);
     console.log(tasks);
-
+    const getDateFrom = (date, dateString) =>{
+        setDateFrom(dateString);
+        console.log(date, dateString);
+    }
+    const getDateTo = (date, dateString) =>{
+        setDateTo(dateString);
+        console.log(date, dateString);
+    }
     const onSearch = value => console.log(value);
     return (
         <div>
             <Row className="colleague-row-1" >
                 <Col span={24}>
-                    <Button type="primary" icon={<SearchOutlined />}>Back</Button>
+                    <Button type="primary" icon={<RollbackOutlined />}>Quay lại</Button>
                     <Button type="primary" icon={<SearchOutlined />}>
-                        Search
+                       Tìm kiếm
                     </Button>
                     <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
-                    <Button type="primary" icon={<SearchOutlined />} onClick={showModal}>Add Task </Button>
+                    <Button type="primary" icon={<FolderAddOutlined />} onClick={showModal}>Thêm Công việc </Button>
                     <Modal
                         visible={visible}
-                        title="Title"
+                        title="Thêm Công Việc"
                         onOk={handleOk}
                         onCancel={handleCancel}
                         footer={[
@@ -111,14 +124,28 @@ function Task() {
                             </Button>
                         ]}
                     >
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
+                        <Input
+                            placeholder="Tiêu đề"
+                            onChange= {(event) => setTitle(event.target.value)}
+                        />
+                        <Input
+                            placeholder="Tên Nhân Viên"
+                            onChange= {(event) => setEmployee(event.target.value)}
+                        />
+                        <Input
+                            placeholder="Mô tả công việc"
+                            onChange= {(event) => setDescription(event.target.value)}
+                        />
+                        <Space direction="vertical">
+                            <DatePicker onChange={getDateFrom} />
+                        </Space>,
+                        <Space direction="vertical">
+                            <DatePicker onChange={getDateTo} />
+                        </Space>,
+                        <Switch checkedChildren="Đã Hoàn Thành" unCheckedChildren="Chưa Hoàn Thành" />
                     </Modal>
-                    <Button type="primary">Edit Task </Button>
-                    <Button type="primary">Delete Task </Button>
+                    <Button type="primary" icon={<EditOutlined />}>Chỉnh sửa thông tin công việc </Button>
+                    <Button type="primary" icon={<DeleteOutlined />}>Xóa Công Việc </Button>
                 </Col>
             </Row>
             <Row className="colleague-row">

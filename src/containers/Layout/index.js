@@ -20,8 +20,7 @@ const { Content, Footer, Sider, Header } = Layout;
 function DefaultLayout(props) {
     const dataUser = JSON.parse(getUser());
     console.log(dataUser);
-    const employeeInfo = dataUser.employeeInfo;
-    console.log(employeeInfo);
+    const employeeInfo = dataUser.employee_info;
     let history = useHistory();
     const Logout = () => {
         removeToken();
@@ -83,9 +82,9 @@ function DefaultLayout(props) {
                         <Menu.Item key="10" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
                             <Link to="/support" style={{ color: "#66788A" }}>Hỗ Trợ</Link>
                         </Menu.Item>
-                        <Menu.Item key="11" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
+                        {/* <Menu.Item key="11" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
                             <Link to="/support-reply" style={{ color: "#66788A" }}>Câu trả lời hỗ trợ</Link>
-                        </Menu.Item>
+                        </Menu.Item> */}
                     </Menu>
                 </Sider>
                 <Content>

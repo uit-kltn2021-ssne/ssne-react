@@ -10,24 +10,17 @@ import { addFaqs, getFaqs } from '../../reducer/Faq';
 const { Option } = Select;
 const columns = [
     {
-        title: 'Tiêu đề ',
-        dataIndex: 'title',
+        title: ' Người Tạo',
+        dataIndex: 'status',
     },
     {
-        title: 'Mô tả',
-        dataIndex: 'description',
+        title: 'Nội Dung',
+        dataIndex: 'content',
     },
-    {
-        title: 'Tag',
-        dataIndex: 'tag',
-    },
-    {
-        title: ' Employee',
-        dataIndex: 'employee',
-    },
+  
 ];
 
-function CheckList() {
+function SupportReply() {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loading1, setLoading1] = useState(false);
@@ -119,7 +112,7 @@ function CheckList() {
                     <Button type="primary" icon={<SearchOutlined />}>
                         Tìm Kiếm
                     </Button>
-                    <Search placeholder="Nhập checklist muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} />
+                    <Search placeholder="Nhập FAQ muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} />     
                 </Col>
             </Row>
             <Row className="colleague-row">
@@ -130,4 +123,4 @@ function CheckList() {
         </div>
     );
 }
-export default CheckList;
+export default SupportReply;

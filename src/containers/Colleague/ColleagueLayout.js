@@ -1,5 +1,12 @@
 import { Table, Button, Row, Input, Col } from 'antd';
-import { SearchOutlined, AudioOutlined } from '@ant-design/icons';
+import { 
+  SearchOutlined, 
+  AudioOutlined,
+  RollbackOutlined,
+  FolderAddOutlined ,
+  EditOutlined,
+  DeleteOutlined
+ } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import '../Colleague/ColleagueLayout.css'
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,11 +19,11 @@ function TableColleague() {
   const jwt = getToken();
   const columns = [
     {
-      title: 'Name',
+      title: 'Họ Tên ',
       dataIndex: 'name',
     },
     {
-      title: 'PhoneNumber',
+      title: 'Số điện thoại',
       dataIndex: 'phoneNumber',
     },
     {
@@ -32,11 +39,11 @@ function TableColleague() {
       dataIndex: 'facebook',
     },
     {
-      title: 'Introduction',
+      title: 'Giới thiệu bản thân',
       dataIndex: 'introduction',
     },
     {
-      title: 'Position',
+      title: 'Vị trí làm việc',
       dataIndex: 'position',
     },
   ];
@@ -82,14 +89,14 @@ function TableColleague() {
       <div>
         <Row className="colleague-row-1" >
           <Col span={24}>
-            <Button type="primary" icon={<SearchOutlined />}>Back</Button> 
+            <Button type="primary" icon={<RollbackOutlined />}>Quay lại</Button> 
             <Button type="primary" icon={<SearchOutlined />}>
-              Search
+              Tìm kiếm
             </Button>
             <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
-            <Button type="primary" icon={<SearchOutlined />}>Add User</Button>
-            <Button type="primary" icon={<SearchOutlined />}>Edit User</Button>
-            <Button type="primary" icon={<SearchOutlined />}>Delete User</Button>
+            <Button type="primary" icon={<FolderAddOutlined />}>Thêm Nhân Viên</Button>
+            <Button type="primary" icon={<EditOutlined />}>Chỉnh sửa thông tin nhân viên</Button>
+            <Button type="primary" icon={<DeleteOutlined />}>Xóa Nhân Viên</Button>
           </Col>
         </Row>
         <Row className="colleague-row">

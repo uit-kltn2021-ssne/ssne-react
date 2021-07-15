@@ -1,4 +1,4 @@
-import { Col, Input, Row } from 'antd';
+import { Input } from 'antd';
 
 import React from 'react';
 import '../Articles/Article.css'
@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getToken } from '../../utils/AuthUtils';
 import { getArticle, getCountArticle } from '../../reducer/Articles';
-import { Link } from 'react-router-dom';
-import { RightOutlined } from '@ant-design/icons';
+import ReactMarkdown from 'react-markdown';
+import { useLocation } from 'react-router-dom';
 
 const { Search } = Input;
 const columns = [
@@ -27,10 +27,11 @@ const columns = [
         title: 'Nội Dung',
         dataIndex: 'content',
     },
-
+    
 ];
-function Article() {
+function BlogDetail() {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const { state } = useLocation();
     const [loading, setLoading] = useState(false);
     const [loading1, setLoading1] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -53,40 +54,24 @@ function Article() {
     const count_articles = useSelector((store) => store.articles.count);
     console.log(articles);
     console.log(count_articles);
-
-    const listArticles = articles.map((article) =>
-        <Col className="col-article" span={11}>
-        <Row>
-            <Col span={20}>
-                <Link
-                    to={{
-                        pathname: `/article/${article.id}`,
-                        state: { articles: article }
-                    }}
-                >
-
-                    <p style={{fontSize:"20px" ,color:'#66788A'}}>{article.title} </p>
-
-                </Link>
-            </Col>
-            <Col span={1} className='icon-article'>
-                <RightOutlined />
-            </Col>
-            </Row>
-        </Col>
+    
+    const listArticles = articles.map((articles) =>
+        
+            <li> <h1>{articles.title} </h1></li>
+    
     );
 
     return (
         <>
+        <h2> Danh Sách Bài Viết </h2>
+        <div>
+            <p> {state.articles.id}</p>
+            {/* <p> {state.articles.content}</p> */}
+            <ReactMarkdown>{state.articles.content}</ReactMarkdown> 
             
-            <div style={{justifyContent:'center'}}>
-            <p style={{fontSize:"40px" ,color:'#66788A'}}>Số tay nhân viên </p>
-                <Row>
-                    {listArticles}
-                </Row>
-            </div>
+        </div>
         </>
     );
-
+   
 }
-export default Article;
+export default BlogDetail;
