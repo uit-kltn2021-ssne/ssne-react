@@ -114,13 +114,13 @@ function CheckList() {
     return (
         <div>
             <Row className="colleague-row-1" >
-                <Col span={24}>
+                <Space wrap style={{ marginBottom: 10 }}>
                     <Button type="primary" icon={<RollbackOutlined />}>Quay lại</Button>
-                    <Button type="primary" icon={<SearchOutlined />}>
+                    {/* <Button type="primary" icon={<SearchOutlined />}>
                         Tìm Kiếm
                     </Button>
-                    <Search placeholder="Nhập checklist muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} />
-                </Col>
+                    <Search placeholder="Nhập checklist muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} /> */}
+                </Space>
             </Row>
             <Row className="colleague-row">
                 <Col span={20}>

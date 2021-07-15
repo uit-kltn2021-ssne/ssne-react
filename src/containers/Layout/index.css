@@ -11,3 +11,7 @@
     padding: 20px;
     border-bottom: 1px solid black;
 }
+
+.ant-menu-item .ant-menu-item-selected {
+    color: #FFFFFF;
+}

@@ -1,4 +1,4 @@
-import { Calendar, Badge, Col } from 'antd';
+import { Calendar, Badge, Col, Row } from 'antd';
 import React from 'react';
 import '../Calendar/CalendarLayout.css';
 function getListData(value) {
@@ -63,9 +63,11 @@ function monthCellRender(value) {
 class CalendarWeb extends React.Component {
     render() {
         return (
-            <Col span={20} className="cal-layout">
-                <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />
-            </Col>
+            <Row style={{ justifyContent: "center", marginTop: '30px' }}>
+                <Col span={20} style={{ boxShadow: "1px 1px 1px rgb(216, 214, 214)", border: "solid 1px #ccc" }}>
+                    <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />
+                </Col>
+            </Row>
         );
     }
 }

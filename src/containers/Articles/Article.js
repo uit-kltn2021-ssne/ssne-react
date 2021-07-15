@@ -56,32 +56,32 @@ function Article() {
 
     const listArticles = articles.map((article) =>
         <Col className="col-article" span={11}>
-        <Row>
-            <Col span={20}>
-                <Link
-                    to={{
-                        pathname: `/article/${article.id}`,
-                        state: { articles: article }
-                    }}
-                >
+            <Row style={{ paddingLeft: '12px', height: '100%', alignContent: 'center' }}>
+                <Col span={20}>
+                    <Link
+                        to={{
+                            pathname: `/article/${article.id}`,
+                            state: { articles: article }
+                        }}
+                    >
 
-                    <p style={{fontSize:"20px" ,color:'#66788A'}}>{article.title} </p>
+                        <div style={{ fontSize: "18px", color: '#66788A' }}>{article.title} </div>
 
-                </Link>
-            </Col>
-            <Col span={1} className='icon-article'>
-                <RightOutlined />
-            </Col>
+                    </Link>
+                </Col>
+                <Col span={1} className='icon-article'>
+                    <RightOutlined />
+                </Col>
             </Row>
         </Col>
     );
 
     return (
         <>
-            
-            <div style={{justifyContent:'center'}}>
-            <p style={{fontSize:"40px" ,color:'#66788A'}}>Số tay nhân viên </p>
-                <Row>
+
+            <div style={{ justifyContent: 'center' }}>
+                <p style={{ fontSize: "30px", color: '#66788A', textAlign: 'center', fontWeight: 'bold' }}>Sổ tay nhân viên </p>
+                <Row style={{ justifyContent: 'space-evenly' }}>
                     {listArticles}
                 </Row>
             </div>

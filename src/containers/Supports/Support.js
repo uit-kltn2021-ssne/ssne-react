@@ -114,12 +114,12 @@ function Support() {
     return (
         <div>
             <Row className="colleague-row-1" >
-                <Col span={24}>
+                <Space wrap style={{ marginBottom: 10 }}>
                     <Button type="primary" icon={<RollbackOutlined />}>Quay lại</Button>
                     <Button type="primary" icon={<SearchOutlined />}>
                         Tìm Kiếm
                     </Button>
-                    <Search placeholder="Nhập FAQ muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} />
+                    <Search placeholder="Nhập FAQ muốn tìm kiếm" allowClear onSearch={onSearch}/>
                     <Button type="primary" icon={<FolderAddOutlined />} onClick={showModal}>Thêm Hỗ Trợ </Button>
                     <Modal
                         visible={visible}
@@ -145,9 +145,9 @@ function Support() {
                         />
 
                         <Select
-                            onChange={(event) =>{setType(event.target.value)}}
+                            onChange={(event) => { setType(event.target.value) }}
                             placeholder="Loại hỗ trợ"
-                            
+
                         >
                             <Option value="it_support">Hỗ trợ IT</Option>
                             <Option value="hr_support"> Hỗ trợ HR</Option>
@@ -163,7 +163,7 @@ function Support() {
                             <Option value="rejected">Từ Chối</Option>
                         </Select> */}
                     </Modal>
-                </Col>
+                </Space>
             </Row>
             <Row className="colleague-row">
                 <Col span={20}>

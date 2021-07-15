@@ -1,5 +1,5 @@
-import { Table, Button, Row, Input, Col, Modal,Form } from 'antd';
-import { SearchOutlined, AudioOutlined ,RollbackOutlined ,FolderAddOutlined } from '@ant-design/icons';
+import { Table, Button, Row, Input, Col, Modal, Form, Space } from 'antd';
+import { SearchOutlined, AudioOutlined, RollbackOutlined, FolderAddOutlined } from '@ant-design/icons';
 import React from 'react';
 import '../Dayoff/Dayoff.css'
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,7 +35,7 @@ function FAQ() {
     const showModal = () => {
         setVisible(true);
     };
-    
+
 
     const handleCancel = () => {
         setVisible(false);
@@ -63,19 +63,19 @@ function FAQ() {
     );
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
-    var dataQuestion= {
+    var dataQuestion = {
         "question": question,
         "answer": answer,
-      };
+    };
     const jwt = getToken();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getFaqs(jwt));
-        
+
     }, [dispatch, jwt]);
     const faqs = useSelector((store) => store.faq.data);
     const onSearch = value => console.log(value);
-    
+
     const getQuestion = event => {
         setQuestion(event.target.value);
     }
@@ -84,7 +84,7 @@ function FAQ() {
     }
     const handleOk = () => {
         setLoading1(true);
-        dispatch(addFaqs(jwt,dataQuestion));
+        dispatch(addFaqs(jwt, dataQuestion));
         setTimeout(() => {
             setLoading1(false);
             setVisible(false);
@@ -93,13 +93,13 @@ function FAQ() {
     return (
         <div>
             <Row className="colleague-row-1" >
-                <Col span={24}>
-                    <Button type="primary" icon={ <RollbackOutlined />}>Quay lại</Button>
+                <Space wrap style={{ marginBottom: 10 }}>
+                    <Button type="primary" icon={<RollbackOutlined />}>Quay lại</Button>
                     <Button type="primary" icon={<SearchOutlined />}>
                         Tìm Kiếm
                     </Button>
-                    <Search placeholder="Nhập FAQ muốn tìm kiếm" allowClear onSearch={onSearch} style={{ width: 200 }} />
-                    <Button type="primary"  icon={ <FolderAddOutlined />} onClick={showModal}>Thêm FAQS </Button>
+                    <Search placeholder="Nhập câu hỏi muốn tìm" allowClear onSearch={onSearch}/>
+                    <Button type="primary" icon={<FolderAddOutlined />} onClick={showModal}>Thêm FAQS </Button>
                     <Modal
                         visible={visible}
                         title="FAQ"
@@ -140,7 +140,7 @@ function FAQ() {
                             <Input onChange={getAnswer} />
                         </Form.Item>
                     </Modal>
-                </Col>
+                </Space>
             </Row>
             <Row className="colleague-row">
                 <Col span={20}>

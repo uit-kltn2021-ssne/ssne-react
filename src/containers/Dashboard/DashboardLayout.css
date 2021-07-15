@@ -15,8 +15,9 @@
 .col-icon{
     text-align-last: end;
     font-size: 30px;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-right: 40px;
+    align-self: center;
 }
 .infor {
     justify-content: space-around;
@@ -25,10 +26,10 @@
     margin-bottom: 10px;
 }
 .col-content{
-    border: solid 2px #aaa;
+    border: solid 1px #ccc;
     margin-right: 16px;
-    border-radius: 20px;
-    box-shadow: 2px 2px 2px #aaa;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgb(216, 214, 214);
 }
 .row-in-dashboard-1{
     display: flex;

@@ -1,5 +1,5 @@
-import { Table, Button, Row, Input, Col, Modal, DatePicker, Space,InputNumber } from 'antd';
-import { SearchOutlined, AudioOutlined,EditOutlined,RollbackOutlined,FolderAddOutlined,DeleteOutlined } from '@ant-design/icons';
+import { Table, Button, Row, Input, Col, Modal, DatePicker, Space, InputNumber } from 'antd';
+import { SearchOutlined, AudioOutlined, EditOutlined, RollbackOutlined, FolderAddOutlined, DeleteOutlined } from '@ant-design/icons';
 import React from 'react';
 import '../Dayoff/Dayoff.css'
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,7 +26,7 @@ const columns = [
         title: 'Số tiếng nghỉ trong ngày',
         dataIndex: 'numberOfHours',
     },
-   
+
     {
         title: 'Số điện thoại liên lạc ',
         dataIndex: 'phoneNumber',
@@ -46,13 +46,13 @@ function DayOff() {
     const [phonenumber, setPhoneNumber] = useState('');
     const [numberOfHours, setNumberOfHours] = useState(0);
     const jwt = getToken();
-    var dataDayOff ={
+    var dataDayOff = {
         "reason": reason,
         "date": date,
         "numberOfHours": numberOfHours,
         "name": name,
         "phoneNumber": phonenumber,
-      };
+    };
     const start = () => {
         setLoading({ loading: true });
         // ajax request after empty completing
@@ -66,7 +66,7 @@ function DayOff() {
     };
     const handleOk = () => {
         setLoading1(true);
-        dispatch(addDayOff(jwt,dataDayOff));
+        dispatch(addDayOff(jwt, dataDayOff));
         setTimeout(() => {
             setLoading1(false);
             setVisible(false);
@@ -90,11 +90,11 @@ function DayOff() {
         selectedRowKeys,
         onChange: onSelectChange,
     };
-    const getDate = (date, dateString) =>{
+    const getDate = (date, dateString) => {
         setDate(dateString);
         console.log(date, dateString);
     }
-    const getNumberOfHour = (value) =>{
+    const getNumberOfHour = (value) => {
         setNumberOfHours(value);
         console.log('changed', value);
     }
@@ -109,7 +109,7 @@ function DayOff() {
             }}
         />
     );
-    
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getDayOffs(jwt));
@@ -123,13 +123,13 @@ function DayOff() {
     return (
         <div>
             <Row className="colleague-row-1" >
-                <Col span={24}>
+                <Space wrap style={{ marginBottom: 10 }}>
                     <Button type="primary" icon={<RollbackOutlined />}>Quay lại</Button>
                     <Button type="primary" icon={<SearchOutlined />}>
                         Tìm Kiếm
                     </Button>
-                    <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
-                    <Button type="primary" icon={ <FolderAddOutlined />} onClick={showModal}>Thêm Ngày Nghỉ </Button>
+                    <Search placeholder="input search text" allowClear onSearch={onSearch} />
+                    <Button type="primary" icon={<FolderAddOutlined />} onClick={showModal}>Thêm Ngày Nghỉ </Button>
                     <Modal
                         visible={visible}
                         title="Day Off "
@@ -146,28 +146,28 @@ function DayOff() {
                     >
                         <Input
                             placeholder="Reason"
-                            onChange= {(event) => setReason(event.target.value)}
+                            onChange={(event) => setReason(event.target.value)}
                         />
                         <Input
                             placeholder="Name Employee"
-                            onChange= {(event) => setName(event.target.value)}
+                            onChange={(event) => setName(event.target.value)}
                         />
                         <Input
                             placeholder="Phone Number"
-                            onChange= {(event) => setPhoneNumber(event.target.value)}
+                            onChange={(event) => setPhoneNumber(event.target.value)}
                         />
                         <Space direction="vertical">
                             <DatePicker onChange={getDate} />
                         </Space>,
                         <InputNumber min={1} max={8}
                             placeholder="Number Of Hours"
-                            onChange= {getNumberOfHour}
+                            onChange={getNumberOfHour}
                         />
                     </Modal>
 
-                    <Button type="primary" icon={<EditOutlined />}> Chỉnh Sửa Thông Tin Ngày Nghỉ </Button>
-                    <Button type="primary" icon={<DeleteOutlined />}>Delete Day Off </Button>
-                </Col>
+                    <Button type="primary" icon={<EditOutlined />}> Chỉnh Sửa Ngày Nghỉ </Button>
+                    <Button type="primary" icon={<DeleteOutlined />}>Xóa Ngày Nghỉ </Button>
+                </Space>
             </Row>
             <Row className="colleague-row">
                 <Col span={20}>

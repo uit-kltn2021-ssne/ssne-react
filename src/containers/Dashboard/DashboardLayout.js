@@ -45,7 +45,7 @@ function LayoutWeb(props) {
   var dateFrom = null;
   var dateTo = null;
   console.log(count_tasks);
-  
+
   // const listDayOff = dayoffs.map((dayoffs) =>
   //   <li> {dayoffs.reason}</li>
   // );
@@ -55,7 +55,7 @@ function LayoutWeb(props) {
   function getListData(value) {
     let listData = [];
     if (tasks.length > 0) {
-        tasks.forEach(x => {
+      tasks.forEach(x => {
         console.log(x);
         let task1 = x;
         console.log(task1);
@@ -109,33 +109,33 @@ function LayoutWeb(props) {
     <>
       <div>
         <Row className="row-in-dashboard-1" style={{ justifyContent: "center" }}>
-          <Col span={8} className="col-content">
+          <Col span={8} className="col-content" style={{ backgroundColor: "#fff" }}>
             <Row>
               <Col span={12} className="col-dayoff">
-                <p>Ngày nghỉ</p>
-                <p>{count_dayoff}</p>
+                <p style={{ margin: 0 }}>Ngày nghỉ</p>
+                <span style={{ fontSize: 60, fontWeight: 'bold' }}>{count_dayoff}</span>
               </Col>
               <Col span={12} className="col-icon">
-                <CalendarOutlined style={{ border: "1px solid #EC4C47", borderRadius: "100%", justifyContent: "center", padding: "10px", background: "#EC4C47", color: "white" }} />
+                <CalendarOutlined style={{ border: "1px solid #EC4C47", borderRadius: "100%", justifyContent: "center", alignSelf: "center", padding: "10px", background: "#EC4C47", color: "white" }} />
               </Col>
             </Row>
           </Col>
-          <Col span={8} className="col-content">
+          <Col span={8} className="col-content" style={{ backgroundColor: "#fff" }}>
             <Row>
               <Col span={12} className="col-dayoff">
-                <p>Nhân Viên</p>
-                <p>{count_employees}</p>
+                <p style={{ margin: 0 }}>Nhân Viên</p>
+                <span style={{ fontSize: 60, fontWeight: 'bold' }}>{count_employees}</span>
               </Col>
               <Col span={12} className="col-icon">
                 <UserOutlined style={{ border: "1px solid #47B881", borderRadius: "100%", justifyContent: "center", padding: "10px", background: "#47B881", color: "white" }} />
               </Col>
             </Row>
           </Col>
-          <Col span={7} className="col-content">
+          <Col span={7} className="col-content" style={{ backgroundColor: "#fff" }}>
             <Row>
               <Col span={12} className="col-dayoff">
-                <p>Công việc</p>
-                <p>{count_tasks}</p>
+                <p style={{ margin: 0 }}>Công việc</p>
+                <span style={{ fontSize: 60, fontWeight: 'bold' }}>{count_tasks}</span>
               </Col>
               <Col span={12} className="col-icon">
                 <AlignLeftOutlined style={{ border: "1px solid #1070CA", borderRadius: "100%", justifyContent: "center", padding: "10px", background: "#1070CA", color: "white" }} />
@@ -144,8 +144,8 @@ function LayoutWeb(props) {
           </Col>
         </Row>
       </div>
-      <Row style={{ justifyContent: "center" }}>
-        <Col span={20}>
+      <Row style={{ justifyContent: "center", marginTop: '30px' }}>
+        <Col span={20} style={{ boxShadow: "1px 1px 1px rgb(216, 214, 214)", border: "solid 1px #ccc" }}>
           <Calendar onPanelChange={onPanelChange} onSelect={onSelectDateHandler} dateCellRender={dateCellRender} monthCellRender={monthCellRender} />
         </Col>
       </Row>

@@ -27,7 +27,7 @@ const columns = [
         title: 'Nội Dung',
         dataIndex: 'content',
     },
-    
+
 ];
 function BlogDetail() {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -54,24 +54,24 @@ function BlogDetail() {
     const count_articles = useSelector((store) => store.articles.count);
     console.log(articles);
     console.log(count_articles);
-    
+
     const listArticles = articles.map((articles) =>
-        
-            <li> <h1>{articles.title} </h1></li>
-    
+
+        <li> <h1>{articles.title} </h1></li>
+
     );
 
     return (
-        <>
-        <h2> Danh Sách Bài Viết </h2>
-        <div>
-            <p> {state.articles.id}</p>
-            {/* <p> {state.articles.content}</p> */}
-            <ReactMarkdown>{state.articles.content}</ReactMarkdown> 
-            
+        <div style={{ backgroundColor: '#fff', margin: 20, padding: 20 }}>
+            <h1 style={{ fontSize: 30 }}>{state.articles.title}</h1>
+            <div>
+                {/* <p> {state.articles.id}</p> */}
+                {/* <p> {state.articles.content}</p> */}
+                <ReactMarkdown>{state.articles.content}</ReactMarkdown>
+
+            </div>
         </div>
-        </>
     );
-   
+
 }
 export default BlogDetail;
