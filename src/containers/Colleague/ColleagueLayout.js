@@ -1,4 +1,4 @@
-import { Table, Button, Space, Row, Input, Col } from 'antd';
+import { Table, Button, Space, Row, Input, Col, Alert } from 'antd';
 import {
   SearchOutlined,
   AudioOutlined,
@@ -10,13 +10,65 @@ import {
 import React, { useEffect, useState } from 'react';
 import '../Colleague/ColleagueLayout.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountEmployees, getEmployees } from '../../reducer/Employee';
+import { addEmployees, getCountEmployees, getEmployees } from '../../reducer/Employee';
 import { getToken } from '../../utils/AuthUtils';
+import Modal from 'antd/lib/modal/Modal';
+import TextArea from 'antd/lib/input/TextArea';
 
 function TableColleague() {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
   const jwt = getToken();
+  const [visible, setVisible] = useState(false);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email ,setEmail] =useState('');
+  const [skypeId,setSkypeId]= useState('');
+  const [facebook,setFacebook] =useState(''); 
+  const [introduction, setIntroduction] = useState('');
+  const [position, setPosition] = useState('');
+  var dataEmployee = {
+  "name": name,
+  "phoneNumber": phone,
+  "email": email,
+  "skypeId": skypeId,
+  "facebook": facebook,
+  "employeeId": "",
+  "department": "",
+  "introduction": introduction,
+  "checklist": [
+    ""
+  ],
+  "tasks": [
+    ""
+  ],
+  "position": position,
+  "support_tickets": [
+    ""
+  ],
+  "support_replies": [
+    ""
+  ],
+  "user": "",
+  "created_by": "",
+  "updated_by": ""
+}
+  const showModal = () => {
+    setVisible(true);
+};
+  const handleOk = () => {
+    setLoading1(true);
+    dispatch(addEmployees(jwt, dataEmployee));
+    setTimeout(() => {
+        setLoading1(false);
+        setVisible(false);
+    }, 3000);
+};
+
+const handleCancel = () => {
+    setVisible(false);
+};
   const columns = [
     {
       title: 'Họ Tên ',
@@ -94,17 +146,78 @@ function TableColleague() {
             Tìm kiếm
           </Button>
           <Search placeholder="input search text" allowClear onSearch={onSearch} />
-          <Button type="primary" icon={<FolderAddOutlined />}>Thêm Nhân Viên</Button>
+          <Button type="primary" icon={<FolderAddOutlined/>} onClick={showModal}>Thêm Nhân Viên</Button>
+          <Modal
+                        visible={visible}
+                        title="Thông tin nhân viên "
+                        onOk={handleOk}
+                        style={{width:"500px"}}
+                        onCancel={handleCancel}
+                        footer={[
+                            <Button key="back" onClick={handleCancel}>
+                                Quay lại
+                            </Button>,
+                            <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
+                                Ok
+                            </Button>
+                        ]}
+                    >
+                        <Input
+                            placeholder="Họ tên"
+                            onChange={(event) => setName(event.target.value)}
+                            style={{ margin:"10px"}}
+                        />
+                        <Input
+                            placeholder="Số điện thoại "
+                            onChange={(event) => setPhone(event.target.value)}
+                            style={{ margin:"10px"}}
+                        />
+                        <Input
+                            placeholder="Email"
+                            onChange={(event) => setEmail(event.target.value)}
+                            style={{ margin:"10px"}}
+                        />
+                        <Input
+                            placeholder="SkypeId"
+                            onChange={(event) => setSkypeId(event.target.value)}
+                            style={{ margin:"10px"}}
+                        />
+                        <Input
+                            placeholder="Facebook"
+                            onChange={(event) => setFacebook(event.target.value)}
+                            style={{ margin:"10px"}}
+                        />
+                        <Input
+                            placeholder="Vị trí làm việc"
+                            onChange={(event) => setPosition(event.target.value)}
+                            style={{ margin:"10px"}}
+                        /> 
+                        <TextArea
+                            placeholder="Giới thiệu bản thân"
+                            onChange={(event) => setIntroduction(event.target.value)}
+                            style={{ margin:"10px",width:"350px",height:"140px"}}
+                        />                     
+                    </Modal>
           <Button type="primary" icon={<EditOutlined />}>Chỉnh sửa</Button>
           <Button type="primary" icon={<DeleteOutlined />}>Xóa Nhân Viên</Button>
         </Space>
       </Row>
       <Row className="colleague-row">
         <Col span={20}>
+        <div style={{ marginBottom: 16 }}>
+          <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
+            Reload
+          </Button>
+          <span style={{ marginLeft: 8 }}>
+            {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+          </span>
+        </div>
           <Table rowSelection={rowSelection} columns={columns} dataSource={employees} />
         </Col>
       </Row>
+     
     </div>
+    
   );
 
 }

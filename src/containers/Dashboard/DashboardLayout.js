@@ -12,6 +12,7 @@ import { getCountDayOff, getDayOffs } from '../../reducer/Dayoff';
 import { getCountEmployees, getEmployees } from '../../reducer/Employee';
 import { getCountTasks, getTasks } from '../../reducer/Task';
 import { getToken } from '../../utils/AuthUtils';
+import Modal from 'antd/lib/modal/Modal';
 
 const { Column } = Table;
 
@@ -44,19 +45,38 @@ function LayoutWeb(props) {
   console.log(tasks);
   var dateFrom = null;
   var dateTo = null;
+  var id = '';
   console.log(count_tasks);
+  const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const showModal = () => {
+    setVisible(true);
+  };
+  const handleCancel = () => {
+    setVisible(false);
+  };
 
   // const listDayOff = dayoffs.map((dayoffs) =>
   //   <li> {dayoffs.reason}</li>
   // );
+  function randomColor(taskid) {
+    var number = 0;
+    for (var i = 0; i < taskid.length; i++) {
+      number += taskid[i].charCodeAt(0);
+    }
+    return Math.floor(number * 1677215).toString(16);
+  }
   const onSelectDateHandler = (value) => {
-    console.log(value)
+    console.log(value);
+    showModal();
   }
   function getListData(value) {
     let listData = [];
     if (tasks.length > 0) {
       tasks.forEach(x => {
         console.log(x);
+        var color = randomColor(x.id);
+        console.log(color);
         let task1 = x;
         console.log(task1);
         var uxiTimestampFrom = Date.parse(task1.from);
@@ -69,7 +89,7 @@ function LayoutWeb(props) {
         dateTo.setHours(0, 0, 0);
         valuetmp.setHours(0, 0, 0);
         if (dateFrom <= valuetmp && dateTo >= valuetmp) {
-          listData.push({ type: 'success', content: 'hello' })
+          listData.push({ type: 'success', content: 'hello', color: "#" + color,id:x.id })
         }
       });
     }
@@ -78,11 +98,12 @@ function LayoutWeb(props) {
 
   function dateCellRender(value) {
     const listData = getListData(value);
+    console.log(listData);
     return (
       <div className="events">
         {
           listData.map(item => (
-            <div className="canledar-data" key={item.content}>
+            <div className="canledar-data" task={item.id} style={{ backgroundColor: item.color }}>
             </div>
           ))
         }
@@ -149,6 +170,18 @@ function LayoutWeb(props) {
           <Calendar onPanelChange={onPanelChange} onSelect={onSelectDateHandler} dateCellRender={dateCellRender} monthCellRender={monthCellRender} />
         </Col>
       </Row>
+      <Modal
+        visible={visible}
+        title="Thông tin công việc "
+        style={{ width: "500px" }}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Đóng
+          </Button>,
+        ]}
+      >
+      </Modal>
       {/* <Row className="row-in-dashboard-2">
         <Col span={8} className="dayoff">
           <div>

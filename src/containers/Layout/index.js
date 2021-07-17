@@ -80,9 +80,9 @@ function DefaultLayout(props) {
                         <Menu.Item key="9" icon={<RobotOutlined />} style={{ color: "#0000FF", fontSize: "18px" }}>
                             <Link to="/article" style={{ color: "#66788A" }}>Bài viết</Link>
                         </Menu.Item>
-                        <Menu.Item key="10" icon={<RobotOutlined />} style={{ color: "#0000FF", fontSize: "18px" }}>
+                        {/* <Menu.Item key="10" icon={<RobotOutlined />} style={{ color: "#0000FF", fontSize: "18px" }}>
                             <Link to="/support" style={{ color: "#66788A" }}>Hỗ Trợ</Link>
-                        </Menu.Item>
+                        </Menu.Item> */}
                         {/* <Menu.Item key="11" icon={<RobotOutlined />} style={{ color: "#0000FF" ,fontSize: "18px"}}>
                             <Link to="/support-reply" style={{ color: "#66788A" }}>Câu trả lời hỗ trợ</Link>
                         </Menu.Item> */}

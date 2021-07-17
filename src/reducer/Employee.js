@@ -1,3 +1,4 @@
+import { Alert } from "antd";
 import axios from "axios";
 
 const GET_EMPLOYEES= 'GET_EMPLOYEES';
@@ -29,15 +30,18 @@ export const getEmployees = (jwt) => (dispatch) => {
  }; 
 
  const ADD_EMPLOYEES= 'ADD_EMPLOYEES';
-export const addEmployees = (jwt) => (dispatch) => {
+export const addEmployees = (jwt,data) => (dispatch) => {
     const AuthStr = 'Bearer '.concat(jwt); 
-    axios.get('https://api.ssne.xyz/employees', {
+    axios.post('https://api.ssne.xyz/employees', data,
+    {
     headers: {
       Authorization:AuthStr
       },
     })
     .then(res => {
         dispatch({ type: ADD_EMPLOYEES, data: res.data });
+        console.log("thành công")
+        
     })
     .catch(error => console.log(error));
  };
