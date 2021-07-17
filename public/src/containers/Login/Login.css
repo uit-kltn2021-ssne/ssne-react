@@ -1,0 +1,16 @@
+.ant-input {
+    width: 200px;
+}
+.ant-input-affix-wrapper {
+    width: 200px;
+}
+.ant-input-suffix {
+    position: inherit;
+}
+.site-layout-content
+{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 10%;
+}

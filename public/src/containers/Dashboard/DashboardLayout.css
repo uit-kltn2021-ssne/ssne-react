@@ -1,0 +1,52 @@
+#components-layout-demo-side .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+}
+
+.col-dayoff{
+    text-align: start;
+    padding: 12px;
+}
+.col-icon{
+    text-align-last: end;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-right: 40px;
+    align-self: center;
+}
+.infor {
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.col-content{
+    border: solid 1px #ccc;
+    margin-right: 16px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgb(216, 214, 214);
+}
+.row-in-dashboard-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 5px;
+    padding-left: 20px;
+}
+.dayoff {
+    text-align: left;
+    padding: 20px;
+}
+.table-task{
+    
+}
+.canledar-data{
+    height: 15px;
+    width: 100%;
+    margin-top: 20px;
+}
